@@ -11,7 +11,7 @@ class BeanCounter
     @bills = YAML.load_file(@@bill_file)
     @config = YAML.load_file(@@config_file)
     @pay_range = @config["pay_range"]
-    @start_date = grab_start_date
+    @start_date = parse_start_date
     @date_range = @start_date..(@start_date + @pay_range)
   end
 
@@ -26,16 +26,12 @@ class BeanCounter
     memo
   end 
 
-  def grab_start_date
-    # puts "Enter a start date (yyyy-mm-dd)"
-    # input = gets.chomp
+  def parse_start_date
+    # date has to be in format yyyy-mm-dd
     Date.parse(ARGV[0])
   end
 
-
-
-  def sum_bills_in_period
-    # TODO: extract 
+  def gather_bills_in_period
     date_numbers = []
     for date in @date_range
       date_numbers.push(date.day)
@@ -44,15 +40,29 @@ class BeanCounter
     # create an array of all the bills with due dates in the date range
     bills_to_pay = @bills["monthly_bills"].select{|bill| date_numbers.include?(bill["date_number"])}
     bills_to_pay += @bills["every_check"]
-    
-    # sum the payments 
-    bills_to_pay.reduce(0) {|memo, bill| memo += bill["amount"]}
+  end
+
+  def sum_bills_in_period 
+    gather_bills_in_period.reduce(0) {|memo, bill| memo += bill["amount"]}
+  end
+
+  def display_bills_in_range
+    puts "------------------------------"
+    gather_bills_in_period.each do |bill|
+      display_string = "Name: #{bill['name']}, Amount Due: #{bill['amount']}"
+      if bill["date_number"]
+        display_string += " Date: #{bill['date_number']}" 
+      else 
+        display_string += " Date: Pay every check"
+      end
+      puts display_string
+      puts "------------------------------"
+    end
+    puts "Total due: #{sum_bills_in_period}"
   end
 end
 
-def 
-
 bean_counter = BeanCounter.new
-p bean_counter.sum_bills_in_period
+bean_counter.display_bills_in_range
 
 
