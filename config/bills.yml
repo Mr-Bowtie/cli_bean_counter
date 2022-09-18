@@ -1,4 +1,4 @@
-bills: 
+monthly_bills: 
   - name: Rent 
     amount: 850
     date_number: 1
@@ -50,6 +50,8 @@ every_check:
     amount: 50 
   - name: car maintenance fund 
     amount: 50 
+
+
 
 
   
