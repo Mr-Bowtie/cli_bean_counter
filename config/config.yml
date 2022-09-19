@@ -1,2 +1,4 @@
 # set in number of days
 pay_range: 14
+# paycheck amount in dollars
+default_paycheck: 1980
