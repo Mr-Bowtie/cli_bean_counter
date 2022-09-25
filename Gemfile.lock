@@ -11,6 +11,8 @@ GEM
     pry-byebug (3.8.0)
       byebug (~> 11.0)
       pry (~> 0.10)
+    rainbow (3.1.1)
+    require_all (3.0.0)
     thor (1.2.1)
 
 PLATFORMS
@@ -20,6 +22,8 @@ DEPENDENCIES
   cli-ui
   pry
   pry-byebug
+  rainbow
+  require_all
   thor
 
 BUNDLED WITH

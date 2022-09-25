@@ -1,4 +1,5 @@
-require "./app/bean_counter.rb"
+require "require_all"
+require_all "lib"
 require "cli/ui"
 class BeanCounter < Thor 
   package_name "bean_counter"
