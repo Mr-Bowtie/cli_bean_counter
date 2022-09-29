@@ -32,4 +32,14 @@ module Display
     end
     puts display_string
   end
+
+  def display_income_calcs
+    CLI::UI::Frame.open("Income Breakdown") do 
+      puts "Paycheck: ".yellow + "#{paycheck}"
+      puts "Bill total: ".red + "#{sum_bills(gather_bills_in_period)}"
+      puts "Net: ".green + "#{calculate_net_income}"
+    end
+  end
+
+  
 end
