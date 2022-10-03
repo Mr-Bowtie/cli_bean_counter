@@ -76,7 +76,7 @@ class BeanCounter
   end
 
   def calculate_division(div, lump)
-    lump * ( div["percentage"].to_f / 100)    
+    ( lump * ( div["percentage"].to_f / 100) ).round(2)    
   end
 
 end
