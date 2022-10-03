@@ -67,6 +67,8 @@ class BeanCounter
     divs.each do |div|
       if div["inner_split"]
         recurse_divisions(divs: div["inner_split"], memo: memo, lump: calculate_division(div, lump))
+      else 
+        memo[div["name"]] = calculate_division(div, lump)
       end
       # convert percentage to a decimal 
       memo[div["name"]] = calculate_division(div, lump)
