@@ -50,4 +50,15 @@ class BeanCounterCli < Thor
     bean_counter.display_divisions
   end
 
+  desc "edit_bill", "Choose a bill and edit one of it's properties"
+
+  def edit_bill
+    CLI::UI::Prompt.ask("Choose a bill to edit") do |handler|
+      # TODO: extract this
+      bean_counter.bills.each do |bill_type, bill_list|
+        bill_list.each do |bill|
+          handler.option("#{bill['name']}") {|opt| p opt}
+        end 
+      end
+    end
 end
