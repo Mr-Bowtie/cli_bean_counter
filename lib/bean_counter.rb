@@ -60,7 +60,7 @@ class BeanCounter
   end
 
   # memo is a hash
-  def recurse_divisions(divs:, memo: {}, lump:) 
+  def traverse_divisions(divs: divisions, memo: {}, lump: calculate_net_income) 
     # iterate over divisions
     # if an object has inner_split, recurse using the memo object to store values
     # binding.pry
