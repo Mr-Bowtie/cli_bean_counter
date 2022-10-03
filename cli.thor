@@ -41,7 +41,7 @@ class BeanCounterCli < Thor
     app = BeanCounter.new(date)
     app.display_bills_in_period
     app.display_income_calcs
-    puts app.recurse_divisions(divs: app.divisions, lump: app.calculate_net_income)
+    app.display_divisions
   end
 
 end

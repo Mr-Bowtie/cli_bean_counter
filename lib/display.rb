@@ -41,5 +41,13 @@ module Display
     end
   end
 
+  def display_divisions
+    CLI::UI::Frame.open("Money Buckets") do 
+      traverse_divisions.each do |name, value|
+        puts name.green + ": #{value}" 
+      end
+    end
+  end
+
   
 end
