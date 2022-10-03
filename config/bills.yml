@@ -45,7 +45,7 @@ every_check:
   - name: dog fund
     amount: 50
   - name: Food budget
-    amount: 200
+    amount: 300
   - name: car insurance holding 
     amount: 50 
   - name: car maintenance fund 
