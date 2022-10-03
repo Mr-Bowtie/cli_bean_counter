@@ -1,12 +1,18 @@
 require "require_all"
 require_all "lib"
 require "cli/ui"
-class BeanCounterCli < Thor 
+
+class BeanCounterCli < Thor
   package_name "bean_counter"
   namespace :bean_counter
-  
+
   attr_accessor :bean_counter
-  # @bean_counter = BeanCounter.new
+
+  no_commands do
+    def bean_counter
+      @bean_counter ||= BeanCounter.new
+    end
+  end
 
   desc "list_categories", "List all of the main bill categories you have set up"
   def list_categories  
@@ -38,10 +44,10 @@ class BeanCounterCli < Thor
 
   desc "pay_period_breakdown START_DATE", "Lists bills due between START_DATE and END_DATE, and shows income calculations."
   def pay_period_breakdown(date)
-    app = BeanCounter.new(date)
-    app.display_bills_in_period
-    app.display_income_calcs
-    app.display_divisions
+    # app = BeanCounter.new(date)
+    bean_counter.display_bills_in_period
+    bean_counter.display_income_calcs
+    bean_counter.display_divisions
   end
 
 end
