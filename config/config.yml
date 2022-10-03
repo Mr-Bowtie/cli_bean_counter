@@ -11,17 +11,19 @@ dividing_rules: # example with $1000
   - name: Debt fund
     percentage: 50 # $500
     inner_split:
-      - name: Loan 
+      - name: Victoria 
         percentage: 30 # 150 
       - name: Credit cards 
         percentage: 70 # 350
         inner_split: 
           - name: Discover
-            percentage: 60
+            percentage: 40
           - name: Chase 
-            percentage: 25
+            percentage: 20
           - name: Capital One 
-            percentage: 15
+            percentage: 20
+          - name: PFFCU
+            percentage: 20
   - name: Savings 
     percentage: 37.5 # $375
   - name: Fun money
