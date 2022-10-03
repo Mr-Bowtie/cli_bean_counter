@@ -5,7 +5,7 @@ require "date"
 require "require_all"
 require_all "lib"
 
-class App 
+class BeanCounter 
   include Display
   @@bill_file = "config/bills.yml"
   @@config_file = "config/config.yml"
