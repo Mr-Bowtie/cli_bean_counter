@@ -1,7 +1,7 @@
 # set in number of days
 # subtract 1 from the range to prevent overlapping with the next pay check
 # i.e: on the 14th day i get paid, so bills landing on that day will be covered by my new check.
-pay_range: 13
+pay_range: 14
 # paycheck amount in dollars
 default_paycheck: 1980
 
@@ -11,10 +11,17 @@ dividing_rules: # example with $1000
   - name: Debt fund
     percentage: 50 # $500
     inner_split:
-      - name: Victoria 
+      - name: Loan 
         percentage: 30 # 150 
       - name: Credit cards 
         percentage: 70 # 350
+        inner_split: 
+          - name: Discover
+            percentage: 60
+          - name: Chase 
+            percentage: 25
+          - name: Capital One 
+            percentage: 15
   - name: Savings 
     percentage: 37.5 # $375
   - name: Fun money
