@@ -30,7 +30,7 @@ class BeanCounter
       type[1].each {|bill| 
         memo += bill["amount"]}
     end
-    memo
+    memo 
   end 
 
   def parse_start_date(date)
@@ -60,19 +60,20 @@ class BeanCounter
   end
 
   # memo is a hash
+  # returns hash {name: "example", value: 100}
   def traverse_divisions(divs: divisions, memo: {}, lump: calculate_net_income) 
     # iterate over divisions
     # if an object has inner_split, recurse using the memo object to store values
-    # binding.pry
     divs.each do |div|
       if div["inner_split"]
-        recurse_divisions(divs: div["inner_split"], memo: memo, lump: calculate_division(div, lump))
+        traverse_divisions(
+                          divs: div["inner_split"], 
+                          memo: memo, 
+                          lump: calculate_division(div, lump)
+                         )
       else 
         memo[div["name"]] = calculate_division(div, lump)
       end
-      # convert percentage to a decimal 
-      memo[div["name"]] = calculate_division(div, lump)
-
     end
     memo
   end
