@@ -15,7 +15,8 @@ module Display
     end
   end
 
-  def display_bills(bill_arr, title) 
+  def display_bills(bill_arr, title)  
+    CLI::UI::StdoutRouter.enable
     CLI::UI::Frame.open(title) do 
       bill_arr.each do |bill|
         display_bill(bill)
@@ -34,6 +35,7 @@ module Display
   end
 
   def display_income_calcs
+    CLI::UI::StdoutRouter.enable
     CLI::UI::Frame.open("Income Breakdown") do 
       puts "Paycheck: ".yellow + "#{paycheck}"
       puts "Bill total: ".red + "#{sum_bills(gather_bills_in_period)}"
@@ -41,11 +43,19 @@ module Display
     end
   end
 
-  def display_divisions
-    CLI::UI::Frame.open("Money Buckets") do 
-      traverse_divisions.each do |name, value|
-        puts name.green + ": #{value}" 
+  def display_divisions(divs: traverse_divisions, name: "Money Buckets: #{calculate_net_income}")
+    CLI::UI.frame_style = :bracket
+    CLI::UI::StdoutRouter.enable
+    CLI::UI::Frame.open(name) do 
+      divs.each do |name, value|
+        next if name == :total
+        if value.class == Hash 
+          display_divisions(divs: value, name: "#{name}: #{value[:total]}")
+        else 
+          puts name.green + ": #{value}" 
+        end
       end
+      # p traverse_divisions
     end
   end
 

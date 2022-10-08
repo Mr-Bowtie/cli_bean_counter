@@ -1,9 +1,9 @@
 require "yaml"
-require "pry"
-require "pry-byebug"
 require "date"
 require "require_all"
 require_all "lib"
+require "pry"
+require "pry-byebug"
 
 class BeanCounter 
   include Display
@@ -59,20 +59,33 @@ class BeanCounter
     paycheck - sum_bills(gather_bills_in_period)
   end
 
+  # TODO: refactor
   # memo is a hash
   # returns hash {name: "example", value: 100}
-  def traverse_divisions(divs: divisions, memo: {}, lump: calculate_net_income) 
+  def traverse_divisions(divs: divisions, memo: {}, lump: calculate_net_income, parent: nil) 
     # iterate over divisions
     # if an object has inner_split, recurse using the memo object to store values
     divs.each do |div|
+      # binding.pry
       if div["inner_split"]
+        if !parent.nil? 
+          parent[div["name"]] = {total: calculate_division(div, lump)}
+        else 
+          memo[div["name"]] = {total: calculate_division(div, lump)}
+        end
         traverse_divisions(
                           divs: div["inner_split"], 
                           memo: memo, 
-                          lump: calculate_division(div, lump)
+                          lump: calculate_division(div, lump),
+                          parent: !parent.nil? ? parent[div["name"]] : memo[div["name"]]
                          )
       else 
-        memo[div["name"]] = calculate_division(div, lump)
+        # binding.pry
+        if !parent.nil? 
+          parent[div["name"]] = calculate_division(div, lump)
+        else 
+          memo[div["name"]] = calculate_division(div, lump)
+        end 
       end
     end
     memo
