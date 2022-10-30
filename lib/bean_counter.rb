@@ -94,6 +94,10 @@ class BeanCounter
   def calculate_division(div, lump)
     ( lump * ( div["percentage"].to_f / 100) ).round(2)    
   end
+   
+  def reload_bills 
+    @bills = YAML.load_file(@@bill_file)
+  end
 
 end
 
