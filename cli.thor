@@ -1,6 +1,7 @@
 require "require_all"
 require_all "lib"
 require "cli/ui"
+require "yaml/store"
 
 class BeanCounterCli < Thor
   package_name "bean_counter"
@@ -8,11 +9,32 @@ class BeanCounterCli < Thor
 
   # attr_accessor :bean_counter
 
-  # no_commands do
-  #   def bean_counter
-  #     @bean_counter ||= BeanCounter.new
-  #   end
-  # end
+  no_commands do
+    
+    def edit_bill_attributes(bill_type:, bill:)
+      CLI::UI::Prompt.ask("Choose attribute to edit") do |handler|
+        # display all editable attributes 
+        bill.each do |key, _|
+          handler.option("#{key}") do |opt| 
+            store = YAML::Store.new "config/bills.yml"
+            input = CLI::UI.ask("Enter the new value", default: "#{bill[opt]}") 
+            # add in logic to skip transaction if value didn't change
+            # input will be a string by default, need it to be and integer for amount and date_number
+            input = input.to_i unless opt == 'name'
+            # all operations on store need to happen in a transaction
+            # All of this happens or none of it
+            store.transaction do 
+              bill_index = store[bill_type].index(bill)
+              # update the correct field in the YAML file
+              store[bill_type][bill_index][opt] = input
+              # implicitly return the updated bill 
+              store[bill_type][bill_index]
+            end
+          end
+        end
+      end
+    end
+  end
 
   desc "list_categories", "List all of the main bill categories you have set up"
 
@@ -56,13 +78,26 @@ class BeanCounterCli < Thor
   desc "edit_bill", "Choose a bill and edit one of it's properties"
 
   def edit_bill
-    CLI::UI::Prompt.ask("Choose a bill to edit") do |handler|
-      # TODO: extract this
-      bean_counter.bills.each do |bill_type, bill_list|
-        bill_list.each do |bill|
-          handler.option("#{bill['name']}") {|opt| p opt}
-        end 
+    bean_counter = BeanCounter.new
+    loop do 
+      CLI::UI::Prompt.ask("Choose a bill to edit") do |handler|
+        # TODO: extract this
+        bean_counter.bills.each do |bill_type, bill_list|
+          bill_list.each do |bill|
+            handler.option("#{bill['name']}") do |opt|
+              bean_counter.display_bill(bill)
+              # set bill to new value after updating 
+              bill = edit_bill_attributes(bill_type: bill_type, bill: bill)
+              # display updated bill 
+              bean_counter.display_bill(bill)
+            end 
+          end 
+        end
       end
-    end
+      bean_counter.display_edit_bill_replay_message
+      answer = STDIN.gets.chomp.downcase
+      break unless answer == 'y' 
+      bean_counter.reload_bills
+    end 
   end
 end
