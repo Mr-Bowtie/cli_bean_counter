@@ -1,9 +1,9 @@
 # set in number of days
 # subtract 1 from the range to prevent overlapping with the next pay check
 # i.e: on the 14th day i get paid, so bills landing on that day will be covered by my new check.
-pay_range: 14
+pay_range: 13
 # paycheck amount in dollars
-default_paycheck: 1980
+default_paycheck: 2436
 
 # All item percentages must sum to 100 
 # Items can have an inner_split, all of those items must also sum to 100 
@@ -15,15 +15,15 @@ dividing_rules: # example with $1000
         percentage: 30 # 150 
       - name: Credit cards 
         percentage: 70 # 350
-        inner_split: 
-          - name: Discover
-            percentage: 40
-          - name: Chase 
-            percentage: 20
-          - name: Capital One 
-            percentage: 20
-          - name: PFFCU
-            percentage: 20
+        # inner_split: 
+        #   - name: Discover
+        #     percentage: 40
+        #   - name: Chase 
+        #     percentage: 20
+        #   - name: Capital One 
+        #     percentage: 20
+        #   - name: PFFCU
+        #     percentage: 20
   - name: Savings 
     percentage: 37.5 # $375
   - name: Fun money

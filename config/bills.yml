@@ -3,7 +3,7 @@ monthly_bills:
     amount: 850
     date_number: 1
   - name: at&t
-    amount: 70
+    amount: 105
     date_number: 1
   - name: Comcast
     amount: 95
@@ -15,8 +15,11 @@ monthly_bills:
     amount: 14
     date_number: 12
   - name: Electric
-    amount: 70
+    amount: 40
     date_number: 14
+  - name: Planet Fitness
+    amount: 26
+    date_number: 17
   - name: Renter's insurance
     amount: 15
     date_number: 20 
@@ -45,11 +48,11 @@ every_check:
   - name: dog fund
     amount: 50
   - name: Food budget
-    amount: 300
+    amount: 400
   - name: car insurance holding 
     amount: 50 
   - name: car maintenance fund 
-    amount: 50 
+    amount: 100 
 
 
 
