@@ -1,62 +1,53 @@
-monthly_bills: 
-  - name: Rent 
-    amount: 850
-    date_number: 1
-  - name: at&t
-    amount: 105
-    date_number: 1
-  - name: Comcast
-    amount: 95
-    date_number: 7
-  - name: car payment
-    amount: 283
-    date_number: 10 
-  - name: Amazon Prime
-    amount: 14
-    date_number: 12
-  - name: Electric
-    amount: 40
-    date_number: 14
-  - name: Planet Fitness
-    amount: 26
-    date_number: 17
-  - name: Renter's insurance
-    amount: 15
-    date_number: 20 
-  - name: Spotify
-    amount: 14
-    date_number: 21
-
-
+---
+monthly_bills:
+- name: Amazon Prime
+  amount: 14
+  date_number: 12
+- name: At&t
+  amount: 105
+  date_number: 1
+- name: Comcast
+  amount: 95
+  date_number: 7
+- name: Electric
+  amount: 40
+  date_number: 14
+- name: Planet Fitness
+  amount: 26
+  date_number: 17
+- name: Rent
+  amount: 850
+  date_number: 1
+- name: Renter's insurance
+  amount: 15
+  date_number: 20
+- name: Spotify
+  amount: 14
+  date_number: 21
+- name: Car Payment
+  amount: 283
+  date_number: 10
 credit_cards:
-  - name: Chase 
-    amount: 50 
-    date_number: 7
-  - name: PFFCU
-    amount: 25
-    date_number: 25
-  - name: Capital One 
-    amount: 65
-    date_number: 28
-  - name: Discover 
-    amount: 150 
-    date_number: 28 
-
-every_check: 
-  - name: Care Credit
-    amount: 100
-  - name: dog fund
-    amount: 50
-  - name: Food budget
-    amount: 400
-  - name: car insurance holding 
-    amount: 50 
-  - name: car maintenance fund 
-    amount: 100 
-
-
-
-
-  
-
-
+- name: Chase
+  amount: 50
+  date_number: 7
+- name: PFFCU
+  amount: 25
+  date_number: 25
+- name: Capital One
+  amount: 65
+  date_number: 28
+- name: Discover
+  amount: 150
+  date_number: 28
+every_check:
+- name: Care Credit
+  amount: 100
+- name: Food budget
+  amount: 400
+- name: Car Insurance Holding
+  amount: 55
+- name: Car Maintenance
+  amount: 100
+- name: Dog Fund
+  amount: 50
