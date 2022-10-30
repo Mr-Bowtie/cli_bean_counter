@@ -59,5 +59,9 @@ module Display
     end
   end
 
-  
+  def display_edit_bill_replay_message
+    puts "-----------------------------------------"
+    puts "Edit another bill?".green + " (y/n)".red
+  end
+
 end
