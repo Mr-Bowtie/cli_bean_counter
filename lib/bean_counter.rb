@@ -47,7 +47,8 @@ class BeanCounter
     end
 
     # create an array of all the bills with due dates in the date range
-    bills_to_pay = bills["monthly_bills"].select{|bill| date_numbers.include?(bill["date_number"])}
+    # TODO: extract logic to filter the fills
+    bills_to_pay = (bills["monthly_bills"] + bills["credit_cards"]).select{|bill| date_numbers.include?(bill["date_number"])}
     bills_to_pay += bills["every_check"]
   end
 
@@ -93,6 +94,10 @@ class BeanCounter
 
   def calculate_division(div, lump)
     ( lump * ( div["percentage"].to_f / 100) ).round(2)    
+  end
+   
+  def reload_bills 
+    @bills = YAML.load_file(@@bill_file)
   end
 
 end
