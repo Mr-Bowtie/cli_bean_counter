@@ -49,13 +49,13 @@ module Display
     CLI::UI.frame_style = :bracket
     CLI::UI::StdoutRouter.enable
     CLI::UI::Frame.open(name) do
-      divs.each do |name, value|
-        next if name == :total
+      divs.each do |div_name, value|
+        next if div_name == :total
 
         if value.instance_of?(Hash)
-          display_divisions(divs: value, name: "#{name}: #{value[:total]}")
+          display_divisions(divs: value, name: "#{div_name}: #{value[:total]}")
         else
-          puts name.green + ": #{value}"
+          puts div_name.green + ": #{value}"
         end
       end
       # p traverse_divisions
@@ -65,5 +65,22 @@ module Display
   def display_edit_bill_replay_message
     puts '-----------------------------------------'
     puts 'Edit another bill?'.green + ' (y/n)'.red
+  end
+
+  def display_add_message_replay_message
+    puts '-----------------------------------------'
+    puts 'add another message?'.green + ' (y/n)'.red
+  end
+
+  def display_message_group(group)
+    CLI::UI::Frame.open('Messages'.yellow) do
+      group.each do |message|
+        display_message(message)
+      end
+    end
+  end
+
+  def display_message(message)
+    puts "#{message['date']}: #{message['body']}"
   end
 end

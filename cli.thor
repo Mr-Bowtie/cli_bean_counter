@@ -4,6 +4,7 @@ require 'require_all'
 require_all 'lib'
 require 'cli/ui'
 require 'yaml/store'
+require 'date'
 
 # CLI commands and helpers
 class BeanCounterCli < Thor
@@ -77,6 +78,7 @@ class BeanCounterCli < Thor
     bean_counter.display_bills_in_period
     bean_counter.display_income_calcs
     bean_counter.display_divisions
+    bean_counter.display_message_group(bean_counter.messages) unless bean_counter.messages.empty?
   end
 
   desc 'edit_bill', "Choose a bill and edit one of it's properties"
@@ -103,6 +105,34 @@ class BeanCounterCli < Thor
       break unless answer == 'y'
 
       bean_counter.reload_bills
+    end
+  end
+
+  desc 'add_message DATE', 'add a message with a specified date to display it (DATE format: yyyy-mm-dd) '
+  def add_message(date_string = nil)
+    bean_counter = BeanCounter.new
+    loop do
+      store = YAML::Store.new 'config/messages.yml'
+      if date_string.nil?
+          date_string = CLI::UI::Prompt.ask('Message date?', default: Date.today.to_s)
+      end
+
+      date = Date.parse(date_string)
+      input = CLI::UI::Prompt.ask('Enter message body')
+      message = { 'date' => date.to_s, 'body' => input.to_s }
+
+      store.transaction do
+        # update the correct field in the YAML file
+        store['messages'].push(message)
+
+      end
+
+      bean_counter.display_message(message)
+      bean_counter.display_add_message_replay_message
+      answer = $stdin.gets.chomp.downcase
+      break unless answer == 'y'
+
+      date_string = nil
     end
   end
 end

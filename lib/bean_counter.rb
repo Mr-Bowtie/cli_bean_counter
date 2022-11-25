@@ -10,11 +10,12 @@ require 'pry-byebug'
 # Contains core business logic for CLI functionality
 class BeanCounter
   include Display
-  attr_accessor :bills, :config, :pay_range, :start_date, :date_range, :paycheck, :divisions, :net_income
+  attr_accessor :bills, :config, :pay_range, :start_date, :date_range, :paycheck, :divisions, :net_income, :messages
 
   def initialize(date = Date.today.to_s)
     @bill_path = 'config/bills.yml'
     @config_path = 'config/config.yml'
+    @messages_path = 'config/messages.yml'
     @bills = YAML.load_file(@bill_path)
     @config = YAML.load_file(@config_path)
     @pay_range = @config['pay_range']
@@ -23,6 +24,7 @@ class BeanCounter
     @start_date = parse_start_date(date)
     @date_range = @start_date..(@start_date + @pay_range)
     @divisions = @config['dividing_rules']
+    @messages = messages_in_period
   end
 
   # iterate through each bill group, then iterate through each bill in that group
@@ -102,5 +104,13 @@ class BeanCounter
 
   def reload_bills
     @bills = YAML.load_file(@bill_path)
+  end
+
+  # Returns hash: {date:string => body:string}
+  # each string being a message body
+  def messages_in_period
+    all_messages = YAML.load_file(@messages_path)['messages']
+    # only push messages to the memo array if their associated date is within the current date range
+    all_messages.filter { |mess| @date_range.include?(Date.parse(mess['date'])) }
   end
 end
