@@ -27,6 +27,9 @@ monthly_bills:
 - name: Car Payment
   amount: 283
   date_number: 10
+- name: Care Credit
+  amount: 0
+  date_number: 0
 credit_cards:
 - name: Chase
   amount: 50
@@ -39,15 +42,13 @@ credit_cards:
   date_number: 28
 - name: Discover
   amount: 150
-  date_number: 28
+  date_number: 0
 every_check:
-- name: Care Credit
-  amount: 100
 - name: Food budget
   amount: 400
 - name: Car Insurance Holding
   amount: 55
 - name: Car Maintenance
-  amount: 100
+  amount: 85
 - name: Dog Fund
   amount: 50

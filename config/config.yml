@@ -3,7 +3,7 @@
 # i.e: on the 14th day i get paid, so bills landing on that day will be covered by my new check.
 pay_range: 13
 # paycheck amount in dollars
-default_paycheck: 2436
+default_paycheck: 2500
 
 # All item percentages must sum to 100 
 # Items can have an inner_split, all of those items must also sum to 100 
