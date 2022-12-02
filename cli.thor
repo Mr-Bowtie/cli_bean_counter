@@ -113,8 +113,9 @@ class BeanCounterCli < Thor
     bean_counter = BeanCounter.new
     loop do
       store = YAML::Store.new 'config/messages.yml'
+
       if date_string.nil?
-          date_string = CLI::UI::Prompt.ask('Message date?', default: Date.today.to_s)
+        date_string = CLI::UI::Prompt.ask('Message date?', default: Date.today.to_s)
       end
 
       date = Date.parse(date_string)
@@ -122,9 +123,10 @@ class BeanCounterCli < Thor
       message = { 'date' => date.to_s, 'body' => input.to_s }
 
       store.transaction do
+        # account for empty messages file
+        store['messages'] = [] if store['messages'].nil?
         # update the correct field in the YAML file
         store['messages'].push(message)
-
       end
 
       bean_counter.display_message(message)

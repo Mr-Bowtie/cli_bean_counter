@@ -110,6 +110,8 @@ class BeanCounter
   # each string being a message body
   def messages_in_period
     all_messages = YAML.load_file(@messages_path)['messages']
+    return [] if all_messages.nil?
+
     # only push messages to the memo array if their associated date is within the current date range
     all_messages.filter { |mess| @date_range.include?(Date.parse(mess['date'])) }
   end
