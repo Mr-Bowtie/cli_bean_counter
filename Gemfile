@@ -1,11 +1,13 @@
-source "https://rubygems.org" 
+# frozen_string_literal: true
 
-gem 'thor'
+source 'https://rubygems.org'
+
 gem 'cli-ui'
 gem 'rainbow'
 gem 'require_all'
+gem 'thor'
 
-group :development, :test do 
+group :development, :test do
   gem 'pry'
   gem 'pry-byebug'
 end
