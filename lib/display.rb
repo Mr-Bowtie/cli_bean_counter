@@ -7,18 +7,20 @@ module Display
     display_bills(gather_bills_in_period, date_range.to_s)
   end
 
-  def display_bills_by_category(cat)
-    if cat == 'all'
+  def display_bills_by_tag(tag)
+    if tag == 'all'
       bills.each do |type, bill_list|
         display_bills(bill_list, type)
       end
     else
-      display_bills(bills[cat], cat)
+      tagged_bills = bills.values.flatten.select { |b| b['tags'].include?(tag) }
+      display_bills(tagged_bills, tag)
     end
   end
 
   def display_bills(bill_arr, title)
     CLI::UI::StdoutRouter.enable
+
     CLI::UI::Frame.open(title) do
       bill_arr.each do |bill|
         display_bill(bill)
@@ -27,12 +29,12 @@ module Display
   end
 
   def display_bill(bill)
-    display_string = 'Name:'.red + " #{bill['name']}, " + 'Amount Due:'.blue + " #{bill['amount']}"
-    display_string += if bill['date_number']
-                        ' Date:'.yellow + " #{bill['date_number']}"
-                      else
-                        "#{' Date:'.yellow} Pay every check"
-                      end
+    display_string = 'Name:'.red +
+                     " #{bill['name']}, " +
+                     'Amount Due:'.blue +
+                     " #{bill['amount']}" +
+                     ' Date:'.yellow +
+                     " #{bill['date']}"
     puts display_string
   end
 
