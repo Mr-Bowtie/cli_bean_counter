@@ -19,6 +19,7 @@ module Display
 
   def display_bills(bill_arr, title)
     CLI::UI::StdoutRouter.enable
+
     CLI::UI::Frame.open(title) do
       bill_arr.each do |bill|
         display_bill(bill)
@@ -27,12 +28,12 @@ module Display
   end
 
   def display_bill(bill)
-    display_string = 'Name:'.red + " #{bill['name']}, " + 'Amount Due:'.blue + " #{bill['amount']}"
-    display_string += if bill['date_number']
-                        ' Date:'.yellow + " #{bill['date_number']}"
-                      else
-                        "#{' Date:'.yellow} Pay every check"
-                      end
+    display_string = 'Name:'.red +
+                     " #{bill['name']}, " +
+                     'Amount Due:'.blue +
+                     " #{bill['amount']}" +
+                     ' Date:'.yellow +
+                     " #{bill['date']}"
     puts display_string
   end
 

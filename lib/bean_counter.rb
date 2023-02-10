@@ -54,10 +54,9 @@ class BeanCounter
 
     # create an array of all the bills with due dates in the date range
     # TODO: extract logic to filter the fills
-    bills_to_pay = (bills['monthly_bills'] + bills['credit_cards']).select do |bill|
-      date_numbers.include?(bill['date_number'])
+    bills.values.flatten.select do |bill|
+      bill['date'].to_s == 'every_check' || date_numbers.include?(bill['date'])
     end
-    bills_to_pay + bills['every_check']
   end
 
   def sum_bills(bill_arr)
