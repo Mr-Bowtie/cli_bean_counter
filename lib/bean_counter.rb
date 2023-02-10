@@ -10,7 +10,8 @@ require 'pry-byebug'
 # Contains core business logic for CLI functionality
 class BeanCounter
   include Display
-  attr_accessor :bills, :config, :pay_range, :start_date, :date_range, :paycheck, :divisions, :net_income, :messages
+  attr_accessor :bills, :config, :pay_range, :start_date, :date_range, :paycheck, :divisions, :net_income, :messages,
+                :tags
 
   def initialize(date = Date.today.to_s)
     @bill_path = 'config/bills.yml'
@@ -25,6 +26,7 @@ class BeanCounter
     @date_range = @start_date..(@start_date + @pay_range)
     @divisions = @config['dividing_rules']
     @messages = messages_in_period
+    @tags = collect_tags
   end
 
   # iterate through each bill group, then iterate through each bill in that group
@@ -115,5 +117,11 @@ class BeanCounter
 
     # only push messages to the memo array if their associated date is within the current date range
     all_messages.filter { |mess| @date_range.include?(Date.parse(mess['date'])) }
+  end
+
+  private
+
+  def collect_tags
+    @bills.values.flatten.each_with_object([]) { |bill, obj| obj.push(bill['tags']) }.flatten.uniq
   end
 end

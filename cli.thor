@@ -54,19 +54,19 @@ class BeanCounterCli < Thor
   #   end
   # end
 
-#   desc 'list_bills', 'Choose a category and see all the bills it contains'
-#
-# # TODO: make this work with tags
-#   def list_bills
-#     app = BeanCounter.new
-#     CLI::UI::StdoutRouter.enable
-#     CLI::UI::Prompt.ask('Choose a category to display') do |handler|
-#       handler.option('all') { |_opt| app.display_bills_by_category('all') }
-#       handler.option('monthly bills') { |_opt| app.display_bills_by_category('monthly_bills') }
-#       handler.option('credit cards') { |_opt| app.display_bills_by_category('credit_cards') }
-#       handler.option('every check') { |_opt| app.display_bills_by_category('every_check') }
-#     end
-#   end
+  desc 'list_bills', 'Choose a category and see all the bills it contains'
+
+  def list_bills
+    app = BeanCounter.new
+    CLI::UI::StdoutRouter.enable
+    CLI::UI::Prompt.ask('Choose a category to display') do |handler|
+      handler.option('all') { |_opt| app.display_bills_by_tag('all') }
+      app.tags.each do |tag|
+        handler.option(tag) { |_opt| app.display_bills_by_tag(tag) }
+      end
+
+    end
+  end
 
   desc 'list_bills_in_period START_DATE',
        'Lists bills that are due between START_DATE and END_DATE. dates must be in format yyyy-mm-dd'

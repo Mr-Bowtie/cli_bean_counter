@@ -7,13 +7,14 @@ module Display
     display_bills(gather_bills_in_period, date_range.to_s)
   end
 
-  def display_bills_by_category(cat)
-    if cat == 'all'
+  def display_bills_by_tag(tag)
+    if tag == 'all'
       bills.each do |type, bill_list|
         display_bills(bill_list, type)
       end
     else
-      display_bills(bills[cat], cat)
+      tagged_bills = bills.values.flatten.select { |b| b['tags'].include?(tag) }
+      display_bills(tagged_bills, tag)
     end
   end
 
