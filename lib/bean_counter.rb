@@ -53,7 +53,6 @@ class BeanCounter
     end
 
     # create an array of all the bills with due dates in the date range
-    # TODO: extract logic to filter the fills
     bills.values.flatten.select do |bill|
       bill['date'].to_s == 'every_check' || date_numbers.include?(bill['date'])
     end
@@ -107,7 +106,10 @@ class BeanCounter
 
   # Returns hash: {date:string => body:string}
   # each string being a message body
+  # TODO: automate message.yml creation
   def messages_in_period
+    return File.new('./config/messages.yml', 'w+') unless File.exist?('./config/messages.yml')
+
     all_messages = YAML.load_file(@messages_path)['messages']
     return [] if all_messages.nil?
 
