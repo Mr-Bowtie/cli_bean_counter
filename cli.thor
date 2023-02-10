@@ -23,13 +23,17 @@ class BeanCounterCli < Thor
             input = CLI::UI.ask('Enter the new value', default: (bill[opt]).to_s)
             # add in logic to skip transaction if value didn't change
             # input will be a string by default, need it to be and integer for amount and date_number
-            input = input.to_i unless opt == 'name'
+            input = input.to_i if opt == 'amount'
             # all operations on store need to happen in a transaction
             # All of this happens or none of it
             store.transaction do
               bill_index = store[bill_type].index(bill)
               # update the correct field in the YAML file
-              store[bill_type][bill_index][opt] = input
+              if opt == 'tags'
+                store[bill_type][bill_index][opt].push(input)
+              else
+                store[bill_type][bill_index][opt] = input
+              end 
               # implicitly return the updated bill
               store[bill_type][bill_index]
             end
@@ -39,32 +43,35 @@ class BeanCounterCli < Thor
     end
   end
 
-  desc 'list_categories', 'List all of the main bill categories you have set up'
+  # TODO: is this really necessary?
 
-  def list_categories
-    # type will be an array with the first element being the name of the category
-    BeanCounter.new.bills.each do |type|
-      puts type[0]
-    end
-  end
+  # desc 'list_categories', 'List all of the main bill categories you have set up'
+  #
+  # def list_categories
+  #   # type will be an array with the first element being the name of the category
+  #   BeanCounter.new.bills.each do |type|
+  #     puts type[0]
+  #   end
+  # end
 
-  desc 'list_bills', 'Choose a category and see all the bills it contains'
-
-  def list_bills
-    app = BeanCounter.new
-    selection = ''
-    CLI::UI::StdoutRouter.enable
-    CLI::UI::Prompt.ask('Choose a category to display') do |handler|
-      handler.option('all') { |_opt| app.display_bills_by_category('all') }
-      handler.option('monthly bills') { |_opt| app.display_bills_by_category('monthly_bills') }
-      handler.option('credit cards') { |_opt| app.display_bills_by_category('credit_cards') }
-      handler.option('every check') { |_opt| app.display_bills_by_category('every_check') }
-    end
-  end
+#   desc 'list_bills', 'Choose a category and see all the bills it contains'
+#
+# # TODO: make this work with tags
+#   def list_bills
+#     app = BeanCounter.new
+#     CLI::UI::StdoutRouter.enable
+#     CLI::UI::Prompt.ask('Choose a category to display') do |handler|
+#       handler.option('all') { |_opt| app.display_bills_by_category('all') }
+#       handler.option('monthly bills') { |_opt| app.display_bills_by_category('monthly_bills') }
+#       handler.option('credit cards') { |_opt| app.display_bills_by_category('credit_cards') }
+#       handler.option('every check') { |_opt| app.display_bills_by_category('every_check') }
+#     end
+#   end
 
   desc 'list_bills_in_period START_DATE',
        'Lists bills that are due between START_DATE and END_DATE. dates must be in format yyyy-mm-dd'
-
+  
+  # TODO: refactor this to use an end date
   def list_bills_in_period(date)
     app = BeanCounter.new(date)
     app.display_bills_in_period
