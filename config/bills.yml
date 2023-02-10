@@ -1,53 +1,85 @@
 ---
-monthly_bills:
+bills:
 - name: Amazon Prime
   amount: 14
-  date_number: 12
+  date: '12'
+  tags:
+  - monthly
 - name: At&t
   amount: 105
-  date_number: 1
+  date: 1
+  tags: []
 - name: Comcast
   amount: 95
-  date_number: 7
+  date: 7
+  tags: []
 - name: Electric
   amount: 40
-  date_number: 14
+  date: 14
+  tags: []
 - name: Planet Fitness
   amount: 26
-  date_number: 17
+  date: 17
+  tags: []
 - name: Rent
   amount: 850
-  date_number: 1
+  date: every_check
+  tags: []
 - name: Renter's insurance
   amount: 15
-  date_number: 20
+  date: 20
+  tags: []
 - name: Spotify
   amount: 14
-  date_number: 21
+  date: 21
+  tags:
+  - music
 - name: Car Payment
   amount: 283
-  date_number: 10
-credit_cards:
+  date: 10
+  tags: []
 - name: Chase
   amount: 50
-  date_number: 7
+  date: 7
+  tags: []
 - name: PFFCU
   amount: 25
-  date_number: 25
+  date: 25
+  tags: []
 - name: Capital One
   amount: 65
-  date_number: 28
+  date: 28
+  tags: []
 - name: Discover
   amount: 150
-  date_number: 28
-every_check:
+  date: 28
+  tags: []
 - name: Care Credit
   amount: 100
+  date: every_check
+  tags: []
 - name: Food budget
   amount: 400
+  date: '0'
+  tags:
+  - every check
 - name: Car Insurance Holding
   amount: 55
+  date: '0'
+  tags:
+  - every check
 - name: Car Maintenance
   amount: 100
+  date: '0'
+  tags:
+  - every check
 - name: Dog Fund
   amount: 50
+  date: '0'
+  tags:
+  - every check
+- name: Travel Fund
+  amount: 25
+  date: '0'
+  tags:
+  - every check
