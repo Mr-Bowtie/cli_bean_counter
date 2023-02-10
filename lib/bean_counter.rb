@@ -54,7 +54,7 @@ class BeanCounter
 
     # create an array of all the bills with due dates in the date range
     bills.values.flatten.select do |bill|
-      bill['date'].to_s == 'every_check' || date_numbers.include?(bill['date'])
+      bill['tags'].include?('every check') || date_numbers.include?(bill['date'])
     end
   end
 
