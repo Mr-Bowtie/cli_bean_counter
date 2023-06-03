@@ -5,6 +5,16 @@ bills:
   date: '12'
   tags:
   - monthly
+- name: Canva
+  amount: 13
+  date: 7
+  tags: 
+  - monthly
+- name: PFFCU personal loan
+  amount: 221
+  date: 26
+  tags:
+  - monthly
 - name: At&t
   amount: 105
   date: 1
