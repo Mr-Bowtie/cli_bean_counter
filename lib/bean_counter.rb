@@ -61,9 +61,11 @@ class BeanCounter
     end
 
     # create an array of all the bills with due dates in the date range
-    bills.values.flatten.select do |bill|
+    selected_bills = bills.values.flatten.select do |bill|
       bill['tags'].include?('every check') || date_numbers.include?(bill['date'])
     end
+
+    selected_bills.sort_by { |b| b['date'].to_i }
   end
 
   def sum_bills(bill_arr)
