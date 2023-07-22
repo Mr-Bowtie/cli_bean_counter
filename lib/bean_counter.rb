@@ -13,14 +13,14 @@ class BeanCounter
   attr_accessor :bills, :config, :pay_range, :start_date, :date_range, :paycheck, :divisions, :net_income, :messages,
                 :tags
 
-  def initialize(date = Date.today.to_s)
+  def initialize(paycheck: 0,date: Date.today.to_s)
     @bill_path = 'config/bills.yml'
     @config_path = 'config/config.yml'
     @messages_path = 'config/messages.yml'
     @bills = YAML.load_file(@bill_path)
     @config = YAML.load_file(@config_path)
     @pay_range = @config['pay_range']
-    @paycheck = @config['default_paycheck']
+    @paycheck = paycheck
     # @net_income = calculate_net_income
     @start_date = parse_start_date(date)
     @date_range = @start_date..(@start_date + @pay_range)
@@ -39,6 +39,11 @@ class BeanCounter
       end
     end
     memo
+  end
+
+  def get_paycheck
+    puts "Enter Paycheck amount (whole dollar amount): "
+    paycheck = gets.chomp
   end
 
   def parse_start_date(date)
@@ -110,13 +115,14 @@ class BeanCounter
   # each string being a message body
   # TODO: automate message.yml creation
   def messages_in_period
-    return File.new('./config/messages.yml', 'w+') unless File.exist?('./config/messages.yml')
-
-    all_messages = YAML.load_file(@messages_path)['messages']
-    return [] if all_messages.nil?
-
-    # only push messages to the memo array if their associated date is within the current date range
-    all_messages.filter { |mess| @date_range.include?(Date.parse(mess['date'])) }
+    # return File.new('./config/messages.yml', 'w+') unless File.exist?('./config/messages.yml')
+    #
+    # all_messages = YAML.load_file(@messages_path)['messages']
+    # return [] if all_messages.nil?
+    #
+    # # only push messages to the memo array if their associated date is within the current date range
+    # all_messages.filter { |mess| @date_range.include?(Date.parse(mess['date'])) }
+    return []
   end
 
   private
