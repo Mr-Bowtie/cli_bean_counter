@@ -13,7 +13,7 @@ class BeanCounter
   attr_accessor :bills, :config, :pay_range, :start_date, :date_range, :paycheck, :divisions, :net_income, :messages,
                 :tags
 
-  def initialize(paycheck: 0,date: Date.today.to_s)
+  def initialize(paycheck: 0, date: Date.today.to_s)
     @bill_path = 'config/bills.yml'
     @config_path = 'config/config.yml'
     @messages_path = 'config/messages.yml'
@@ -42,7 +42,7 @@ class BeanCounter
   end
 
   def get_paycheck
-    puts "Enter Paycheck amount (whole dollar amount): "
+    puts 'Enter Paycheck amount (whole dollar amount): '
     paycheck = gets.chomp
   end
 
@@ -55,6 +55,7 @@ class BeanCounter
   # TODO: get relavant categories from instance variable, instead of hardcoding which ones to display.
   def gather_bills_in_period
     date_numbers = []
+    # TODO: extract this
     date_range.each do |date|
       date_numbers.push(date.day)
     end
@@ -122,7 +123,7 @@ class BeanCounter
     #
     # # only push messages to the memo array if their associated date is within the current date range
     # all_messages.filter { |mess| @date_range.include?(Date.parse(mess['date'])) }
-    return []
+    []
   end
 
   private
