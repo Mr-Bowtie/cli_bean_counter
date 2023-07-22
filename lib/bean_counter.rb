@@ -60,12 +60,25 @@ class BeanCounter
       date_numbers.push(date.day)
     end
 
-    # create an array of all the bills with due dates in the date range
-    selected_bills = bills.values.flatten.select do |bill|
-      bill['tags'].include?('every check') || date_numbers.include?(bill['date'])
+    no_date_bills = bills.values.flatten.select do |bill|
+      bill['date'].to_i == 0
     end
 
-    selected_bills.sort_by { |b| b['date'].to_i }
+    # create an array of all the bills with due dates in the date range
+    selected_bills = bills.values.flatten.select do |bill|
+      date_numbers.include?(bill['date'])
+    end
+
+    sorted_bills = selected_bills.sort_by { |b| bill_date_to_real_date(b['date'].to_i) }
+    sorted_bills + no_date_bills
+  end
+
+  def bill_date_to_real_date(day_num)
+    if day_num > start_date.day
+      Date.parse("#{start_date.year}-#{start_date.month}-#{day_num}")
+    else
+      Date.parse("#{start_date.year}-#{start_date.month + 1}-#{day_num}")
+    end
   end
 
   def sum_bills(bill_arr)
