@@ -50,7 +50,7 @@ bills:
   tags:
   - monthly
 - name: Rent
-  amount: 400
+  amount: 500
   date: 1
   tags:
   - every check
@@ -96,3 +96,15 @@ bills:
   date: 26
   tags:
   - monthly
+- name: Chat.OpenAI
+  amount: 20
+  date: 3
+  tags:
+  - monthly
+  - non-essential
+- name: Care Credit
+  amount: 100
+  date: 0
+  tags:
+  - every check
+

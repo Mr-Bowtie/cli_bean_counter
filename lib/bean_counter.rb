@@ -10,7 +10,8 @@ require 'pry-byebug'
 # Contains core business logic for CLI functionality
 class BeanCounter
   include Display
-  attr_accessor :bills, :config, :pay_range, :start_date, :date_range, :paycheck, :divisions, :net_income, :messages, :tags, :bill_total
+  attr_accessor :bills, :config, :pay_range, :start_date, :date_range, :paycheck, :divisions, :net_income, :messages,
+                :tags, :bill_total
 
   def initialize(paycheck: 0, date: Date.today.to_s)
     @bill_path = 'config/bills.yml'
@@ -58,8 +59,8 @@ class BeanCounter
       date_numbers.push(date.day)
     end
 
-    no_date_bills = bills.values.flatten.select do |bill|
-      bill['date'].to_i == 0
+    paycheck_bills = bills.values.flatten.select do |bill|
+      bill['date'].to_i.zero? || bill['tags'].include?('every check')
     end
 
     # create an array of all the bills with due dates in the date range
@@ -67,10 +68,12 @@ class BeanCounter
       date_numbers.include?(bill['date'])
     end
 
+    # @type [Array<Hash>]
     sorted_bills = selected_bills.sort_by { |b| bill_date_to_real_date(b['date'].to_i) }
-    sorted_bills + no_date_bills
+    sorted_bills + paycheck_bills
   end
 
+  # TODO: handle rolling over to a new year
   def bill_date_to_real_date(day_num)
     if day_num > start_date.day
       Date.parse("#{start_date.year}-#{start_date.month}-#{day_num}")
@@ -107,7 +110,7 @@ class BeanCounter
         end
         traverse_divisions(
           divs: div['inner_split'],
-          memo: memo,
+          memo:,
           lump: calculate_division(div, lump),
           parent: !parent.nil? ? parent[div['name']] : memo[div['name']]
         )
