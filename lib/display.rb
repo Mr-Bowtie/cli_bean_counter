@@ -3,6 +3,7 @@
 require 'rainbow/refinement'
 using Rainbow
 module Display
+  # FIX: this expects methods to be available in the class this module is included in. Bad design.
   def display_bills_in_period
     display_bills(gather_bills_in_period, date_range.to_s)
   end
@@ -21,6 +22,7 @@ module Display
   def display_bills(bill_arr, title)
     CLI::UI::StdoutRouter.enable
 
+    tablify_bills!(bill_arr)
     CLI::UI::Frame.open(title) do
       bill_arr.each do |bill|
         display_bill(bill)
@@ -30,7 +32,7 @@ module Display
 
   def display_bill(bill)
     display_string = 'Name:'.red +
-                     " #{bill['name']}, " +
+                     " #{bill['name']} " +
                      'Amount Due:'.blue +
                      " #{bill['amount']}" +
                      ' Date:'.yellow +
@@ -38,16 +40,17 @@ module Display
     puts display_string
   end
 
+  # FIX: inject these values instead of expecting them to be defined
   def display_income_calcs
     CLI::UI::StdoutRouter.enable
     CLI::UI::Frame.open('Income Breakdown') do
       puts 'Paycheck: '.yellow + paycheck.to_s
-      puts 'Bill total: '.red + sum_bills(gather_bills_in_period).to_s
-      puts 'Net: '.green + calculate_net_income.to_s
+      puts 'Bill total: '.red + bill_total.to_s
+      puts 'Net: '.green + net_income.to_s
     end
   end
 
-  def display_divisions(divs: traverse_divisions, name: "Money Buckets: #{calculate_net_income}")
+  def display_divisions(divs: traverse_divisions, name: "Money Buckets: #{net_income}")
     CLI::UI.frame_style = :bracket
     CLI::UI::StdoutRouter.enable
     CLI::UI::Frame.open(name) do
@@ -85,4 +88,23 @@ module Display
   def display_message(message)
     puts "#{message['date']}: #{message['body']}"
   end
+
+  # expects array of bill hashes
+  def tablify_bills!(sorted_bills)
+    # for each section
+    # find the item of greatest width
+    # for all other elements append whitespace to match that width + 1
+    # create row for each bill
+    sorted_bills.first.each_key do |section|
+      next if section == 'tags'
+
+      sectioned_values = sorted_bills.map { |b| b[section] }
+      biggest = sectioned_values.max { |a, b| a.to_s.length <=> b.to_s.length }.to_s
+      padded_values = sectioned_values.map { |b| b.to_s.ljust(biggest.length + 1) }
+      sorted_bills.each_with_index { |b, index| b[section] = padded_values[index] }
+      # reassign section values to new values with whitespace
+    end
+  end
+
+  def bill_table_row(bill); end
 end

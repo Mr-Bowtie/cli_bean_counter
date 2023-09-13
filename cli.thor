@@ -41,6 +41,11 @@ class BeanCounterCli < Thor
         end
       end
     end
+
+    def get_paycheck
+      puts "Enter Paycheck amount (whole dollar amount): "
+      STDIN.gets.chomp.to_i
+    end
   end
 
   # TODO: is this really necessary?
@@ -81,7 +86,10 @@ class BeanCounterCli < Thor
        'Lists bills due between START_DATE and END_DATE, and shows income calculations.'
 
   def pay_period_breakdown(date)
-    bean_counter = BeanCounter.new(date)
+    paycheck = get_paycheck
+    bean_counter = BeanCounter.new(paycheck: paycheck, date: date)
+    bean_counter.calculate_net_income
+    bean_counter.calculate_bill_total
     bean_counter.display_bills_in_period
     bean_counter.display_income_calcs
     bean_counter.display_divisions

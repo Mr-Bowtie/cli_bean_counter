@@ -10,4 +10,5 @@ gem 'thor'
 group :development, :test do
   gem 'pry'
   gem 'pry-byebug'
+  gem 'solargraph'
 end

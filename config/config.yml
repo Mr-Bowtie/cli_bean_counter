@@ -3,18 +3,18 @@
 # i.e: on the 14th day i get paid, so bills landing on that day will be covered by my new check.
 pay_range: 13
 # paycheck amount in dollars
-default_paycheck: 2436
+default_paycheck: 2496
 
 # All item percentages must sum to 100 
 # Items can have an inner_split, all of those items must also sum to 100 
 dividing_rules: # example with $1000
-  - name: Debt fund
-    percentage: 50 # $500
-    inner_split:
-      - name: Victoria 
-        percentage: 30 # 150 
-      - name: Credit cards 
-        percentage: 70 # 350
+  # - name: Debt fund
+  #   percentage: 50 # $500
+    # inner_split:
+      # - name: Victoria 
+      #   percentage: 30 # 150 
+      # - name: Credit cards 
+      #   percentage: 70 # 350
         # inner_split: 
         #   - name: Discover
         #     percentage: 40
@@ -25,7 +25,7 @@ dividing_rules: # example with $1000
         #   - name: PFFCU
         #     percentage: 20
   - name: Savings 
-    percentage: 37.5 # $375
+    percentage: 75 # $375
   - name: Fun money
-    percentage: 12.5 # $125
+    percentage: 25 # $125
 

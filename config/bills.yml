@@ -9,26 +9,51 @@ bills:
   amount: 105
   date: 1
   tags: []
-- name: Comcast
-  amount: 95
+- name: Canva
+  amount: 13
   date: 7
-  tags: []
-- name: Electric
-  amount: 40
-  date: 14
-  tags: []
-- name: Planet Fitness
-  amount: 26
-  date: 17
-  tags: []
+  tags:
+  - monthly
+- name: Netflix
+  amount: 7
+  date: 9
+  tags:
+  - non-essential
+- name: Max
+  amount: 11
+  date: 12
+  tags:
+  - non-essential
+- name: Audible
+  amount: 16
+  date: 15
+  tags:
+  - non-essential
+- name: Paramount +
+  amount: 6
+  date: 19
+  tags:
+  - non-essential
+- name: Kindle Unlimited
+  amount: 11
+  date: 21
+  tags:
+  - non-essential
+- name: Max Fun
+  amount: 5
+  date: 30
+  tags:
+  - non-essential
+- name: Squarespace
+  amount: 36
+  date: 13
+  tags:
+  - monthly
 - name: Rent
-  amount: 850
-  date: every_check
-  tags: []
-- name: Renter's insurance
-  amount: 15
-  date: 20
-  tags: []
+  amount: 500
+  date: 1
+  tags:
+  - every check
 - name: Spotify
   amount: 14
   date: 21
@@ -46,40 +71,45 @@ bills:
   amount: 25
   date: 25
   tags: []
-- name: Capital One
-  amount: 65
-  date: 28
-  tags: []
-- name: Discover
-  amount: 150
-  date: 28
-  tags: []
-- name: Care Credit
-  amount: 100
-  date: every_check
-  tags: []
 - name: Food budget
   amount: 400
   date: '0'
   tags:
   - every check
 - name: Car Insurance Holding
-  amount: 55
-  date: '0'
-  tags:
-  - every check
-- name: Car Maintenance
-  amount: 100
-  date: '0'
-  tags:
-  - every check
-- name: Dog Fund
   amount: 50
   date: '0'
   tags:
   - every check
-- name: Travel Fund
-  amount: 25
+- name: Car Maintenance
+  amount: 85
   date: '0'
   tags:
   - every check
+- name: Dog Fund
+  amount: 70
+  date: '0'
+  tags:
+  - every check
+- name: Keeps Holding
+  amount: 20
+  date: '0'
+  tags: 
+  - every check
+- name: PFFCU personal loan
+  amount: 221
+  date: 26
+  tags:
+  - monthly
+- name: Chat.OpenAI
+  amount: 20
+  date: 3
+  tags:
+  - monthly
+  - non-essential
+- name: Care Credit
+  amount: 100
+  date: 0
+  tags:
+  - every check
+
