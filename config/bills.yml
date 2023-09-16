@@ -8,7 +8,7 @@ bills:
 - name: Canva
   amount: 13
   date: 7
-  tags: 
+  tags:
   - monthly
 - name: PFFCU personal loan
   amount: 221
@@ -19,11 +19,6 @@ bills:
   amount: 105
   date: 1
   tags: []
-- name: Canva
-  amount: 13
-  date: 7
-  tags:
-  - monthly
 - name: Netflix
   amount: 7
   date: 9
@@ -34,33 +29,38 @@ bills:
   date: 12
   tags:
   - non-essential
+  - cancelled
 - name: Audible
   amount: 16
   date: 15
   tags:
   - non-essential
+  - cancelled
 - name: Paramount +
   amount: 6
   date: 19
   tags:
   - non-essential
+  - cancelled
 - name: Kindle Unlimited
   amount: 11
   date: 21
   tags:
   - non-essential
+  - cancelled
 - name: Max Fun
   amount: 5
   date: 30
   tags:
   - non-essential
+  - cancelled
 - name: Squarespace
   amount: 36
   date: 13
   tags:
   - monthly
 - name: Rent
-  amount: 500
+  amount: 850
   date: 1
   tags:
   - every check
@@ -76,11 +76,23 @@ bills:
 - name: Chase
   amount: 50
   date: 7
-  tags: []
+  tags:
+  - credit card
 - name: PFFCU
   amount: 25
   date: 25
-  tags: []
+  tags:
+  - credit card
+- name: Discover
+  amount: 80
+  date: 28
+  tags:
+  - credit card
+- name: Capital One
+  amount: 25
+  date: 28
+  tags:
+  - credit card
 - name: Food budget
   amount: 400
   date: '0'
@@ -104,7 +116,7 @@ bills:
 - name: Keeps Holding
   amount: 20
   date: '0'
-  tags: 
+  tags:
   - every check
 - name: PFFCU personal loan
   amount: 221
@@ -117,9 +129,9 @@ bills:
   tags:
   - monthly
   - non-essential
+  - cancelled
 - name: Care Credit
   amount: 100
   date: 0
   tags:
   - every check
-
