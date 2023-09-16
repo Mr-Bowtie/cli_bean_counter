@@ -63,14 +63,14 @@ class BeanCounter
       bill['date'].to_i.zero? || bill['tags'].include?('every check')
     end
 
-    # create an array of all the bills with due dates in the date range
+    # create an array of all the bills with due dates in the date range that have not been cancelled
     selected_bills = bills.values.flatten.select do |bill|
-      date_numbers.include?(bill['date'])
+    date_numbers.include?(bill['date']) && !(bill['tags'].include?('cancelled'))
     end
 
     # @type [Array<Hash>]
     sorted_bills = selected_bills.sort_by { |b| bill_date_to_real_date(b['date'].to_i) }
-    sorted_bills + paycheck_bills
+    (sorted_bills + paycheck_bills).uniq
   end
 
   # TODO: handle rolling over to a new year
