@@ -65,7 +65,7 @@ class BeanCounter
 
     # create an array of all the bills with due dates in the date range that have not been cancelled
     selected_bills = bills.values.flatten.select do |bill|
-    date_numbers.include?(bill['date']) && !(bill['tags'].include?('cancelled'))
+      date_numbers.include?(bill['date']) && !bill['tags'].include?('cancelled')
     end
 
     # @type [Array<Hash>]
