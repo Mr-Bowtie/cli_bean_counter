@@ -88,6 +88,8 @@ class BeanCounterCli < Thor
   def pay_period_breakdown(date)
     paycheck = get_paycheck
     bean_counter = BeanCounter.new(paycheck: paycheck, date: date)
+    bean_counter.calculate_net_income
+    bean_counter.calculate_bill_total
     bean_counter.display_bills_in_period
     bean_counter.display_income_calcs
     bean_counter.display_divisions
