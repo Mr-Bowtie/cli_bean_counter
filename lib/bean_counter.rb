@@ -79,7 +79,7 @@ class BeanCounter
       Date.parse("#{start_date.year}-#{start_date.month}-#{day_num}")
     # day num is less and its december, increment year and go to 1 for month
     elsif day_num < start_date.day && start_date.month == 12
-      Date.parse("#{start_date.year + 1}-1-#{day_nuim}")
+      Date.parse("#{start_date.year + 1}-1-#{day_num}")
     # day num is less than start date so it is part of the next month
     else
       Date.parse("#{start_date.year}-#{start_date.month + 1}-#{day_num}")
