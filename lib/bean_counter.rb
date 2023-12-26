@@ -59,6 +59,7 @@ class BeanCounter
       date_numbers.push(date.day)
     end
 
+
     paycheck_bills = bills.values.flatten.select do |bill|
       bill['date'].to_i.zero? || bill['tags'].include?('every check')
     end
@@ -105,7 +106,6 @@ class BeanCounter
     # iterate over divisions
     # if an object has inner_split, recurse using the memo object to store values
     divs.each do |div|
-      # binding.pry
       if div['inner_split']
         if !parent.nil?
           parent[div['name']] = { total: calculate_division(div, lump) }
@@ -119,7 +119,6 @@ class BeanCounter
           parent: !parent.nil? ? parent[div['name']] : memo[div['name']]
         )
       elsif !parent.nil?
-        # binding.pry
         parent[div['name']] = calculate_division(div, lump)
       else
         memo[div['name']] = calculate_division(div, lump)

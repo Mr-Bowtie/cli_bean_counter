@@ -60,7 +60,7 @@ bills:
   tags:
   - monthly
 - name: Rent
-  amount: 850
+  amount: 500
   date: 1
   tags:
   - every check
