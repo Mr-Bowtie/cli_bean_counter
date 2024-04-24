@@ -1,0 +1,8 @@
+delete bills +billManagement @feature
+add source to bills +billManagement @feature
+clean up bills data structure +maintenance @refactor
+uncouple display module, remove reliance on external objects +maintenance @refactor
+add yard docs +maintenance @documentation
+show tags when listing bills +billManagement @feature
+add bills +billManagement @feature
+convert to super simple rails app +webApp @refactor

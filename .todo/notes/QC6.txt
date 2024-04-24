@@ -1,0 +1,3 @@
+# convert to super simple rails app +webApp @refactor
+- host on fly under batb.love
+- use SQLite3, use a tiny persistant volume
