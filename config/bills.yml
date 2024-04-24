@@ -2,7 +2,7 @@
 bills:
 - name: Amazon Prime
   amount: 16
-  date: '12'
+  date: 12
   tags:
   - monthly
 - name: Canva
@@ -61,7 +61,7 @@ bills:
   - monthly
   - R.P Dunwater
 - name: Rent
-  amount: 1000
+  amount: 500
   date: 1
   tags:
   - every check
@@ -79,6 +79,7 @@ bills:
   date: 7
   tags:
   - credit card
+  - cancelled
 - name: PFFCU
   amount: 0
   date: 25
@@ -89,13 +90,15 @@ bills:
   date: 28
   tags:
   - credit card
+  - cancelled
 - name: Capital One
-  amount: 0
+  amount: 
   date: 28
   tags:
   - credit card
+  - cancelled
 - name: Food budget
-  amount: 0
+  amount: 400
   date: '0'
   tags:
   - every check
@@ -124,6 +127,11 @@ bills:
   date: '0'
   tags:
   - every check
+- name: House Fund
+  amount: 50
+  date: '0'
+  tags:
+  - every check
 - name: PFFCU personal loan
   amount: 221
   date: 26
@@ -135,6 +143,7 @@ bills:
   tags:
   - monthly
   - non-essential
+  - cancelled
 # - name: Care Credit
 #   amount: 100
 #   date: 0
@@ -143,7 +152,7 @@ bills:
 #   - every check 
 #   - cancelled
 - name: Newegg card
-  amount: 0
+  amount: 100
   date: 0
   tags:
   - every check
@@ -158,6 +167,7 @@ bills:
   date: 7
   tags:
   - non-essential
+  - cancelled
 - name: MailerLite
   amount: 25
   date: 24
