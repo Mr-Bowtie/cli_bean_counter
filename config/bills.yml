@@ -24,17 +24,18 @@ bills:
   date: 9
   tags:
   - non-essential
+  - cancelled
 - name: Max
   amount: 11
   date: 12
   tags:
   - non-essential
-  - cancelled
 - name: Audible
   amount: 16
   date: 15
   tags:
   - non-essential
+  - cancelled
 - name: Paramount +
   amount: 6
   date: 19
@@ -60,7 +61,7 @@ bills:
   - monthly
   - R.P Dunwater
 - name: Rent
-  amount: 500
+  amount: 1000
   date: 1
   tags:
   - every check
@@ -74,22 +75,22 @@ bills:
   date: 10
   tags: []
 - name: Chase
-  amount: 50
+  amount: 0
   date: 7
   tags:
   - credit card
 - name: PFFCU
-  amount: 25
+  amount: 0
   date: 25
   tags:
   - credit card
 - name: Discover
-  amount: 80
+  amount: 0
   date: 28
   tags:
   - credit card
 - name: Capital One
-  amount: 25
+  amount: 0
   date: 28
   tags:
   - credit card
@@ -118,6 +119,16 @@ bills:
   date: '0'
   tags:
   - every check
+- name: Hers Holding
+  amount: 30
+  date: '0'
+  tags:
+  - every check
+- name: PFFCU personal loan
+  amount: 221
+  date: 26
+  tags:
+  - monthly
 - name: Chat.OpenAI
   amount: 20
   date: 3
@@ -132,7 +143,7 @@ bills:
 #   - every check 
 #   - cancelled
 - name: Newegg card
-  amount: 100
+  amount: 0
   date: 0
   tags:
   - every check
@@ -141,6 +152,7 @@ bills:
   date: 1
   tags:
   - non-essential
+  - cancelled
 - name: MTG Delver lens
   amount: 4
   date: 7
