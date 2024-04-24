@@ -10,9 +10,10 @@ module Display
 
   def display_bills_by_tag(tag)
     if tag == 'all'
-      bills.each do |type, bill_list|
-        display_bills(bill_list, type)
-      end
+      # bills.each do |type, bill_list|
+      #   display_bills(bill_list, type)
+      # end
+      display_bills(bills.values.flatten, 'Bills')
     else
       tagged_bills = bills.values.flatten.select { |b| b['tags'].include?(tag) }
       display_bills(tagged_bills, tag)
@@ -21,10 +22,11 @@ module Display
 
   def display_bills(bill_arr, title)
     CLI::UI::StdoutRouter.enable
+    sorted_bills = bill_arr.sort { |a, b| a['date'].to_i <=> b['date'].to_i }
 
-    tablify_bills!(bill_arr)
+    tablify_bills!(sorted_bills)
     CLI::UI::Frame.open(title) do
-      bill_arr.each do |bill|
+      sorted_bills.each do |bill|
         display_bill(bill)
       end
     end
