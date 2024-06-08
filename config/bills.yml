@@ -81,7 +81,7 @@ bills:
   - credit card
   - cancelled
 - name: PFFCU
-  amount: 0
+  amount: 50
   date: 25
   tags:
   - credit card
@@ -92,7 +92,7 @@ bills:
   - credit card
   - cancelled
 - name: Capital One
-  amount: 
+  amount:
   date: 28
   tags:
   - credit card
@@ -122,13 +122,9 @@ bills:
   date: '0'
   tags:
   - every check
-- name: Hers Holding
-  amount: 30
-  date: '0'
-  tags:
   - every check
 - name: House Fund
-  amount: 50
+  amount: 75
   date: '0'
   tags:
   - every check
@@ -143,14 +139,11 @@ bills:
   tags:
   - monthly
   - non-essential
-  - cancelled
-# - name: Care Credit
-#   amount: 100
-#   date: 0
-#   tags:
-#   - credit card
-#   - every check 
-#   - cancelled
+- name: Care Credit
+  amount: 100
+  date: 0
+  tags:
+  - every check
 - name: Newegg card
   amount: 100
   date: 0
@@ -171,16 +164,16 @@ bills:
 - name: MailerLite
   amount: 25
   date: 24
-  tags: 
+  tags:
   - monthly
   - R.P Dunwater
 - name: Wikipedia
   amount: 2
   date: 7
-  tags: 
+  tags:
   - non-essential
 - name: Nintendo Online
   amount: 5
   date: 26
-  tags: 
+  tags:
   - non-essential
