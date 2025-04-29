@@ -25,14 +25,14 @@ dividing_rules: # example with $1000
         #   - name: PFFCU
         #     percentage: 20
   - name: Distributables 
-    percentage: 75
+    percentage: 60
     inner_split:
-      - name: Savings
+      - name: Discover
         percentage: 50
-      - name: Credit Cards/Debt
+      - name: Capital One
         percentage: 50
   - name: Fun money
-    percentage: 25 # $125
+    percentage: 40 # $125
     inner_split:
       - name: Ian
         percentage: 50

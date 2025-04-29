@@ -1,6 +1,4 @@
 .git
-config/bills.yml
-config/messages.yml
 vendor/
 .bundle/
 doc/
