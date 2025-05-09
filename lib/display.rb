@@ -44,11 +44,13 @@ module Display
 
   # FIX: inject these values instead of expecting them to be defined
   def display_income_calcs
+
     CLI::UI::StdoutRouter.enable
-    CLI::UI::Frame.open('Income Breakdown') do
-      puts 'Paycheck: '.yellow + paycheck.to_s
+    CLI::UI::Frame.open('Breakdown') do
+
+      puts 'Paycheck: '.yellow + paycheck.to_s if paycheck > 0
       puts 'Bill total: '.red + bill_total.to_s
-      puts 'Net: '.green + net_income.to_s
+      puts 'Net: '.green + net_income.to_s if paycheck > 0
     end
   end
 

@@ -5,12 +5,14 @@ bills:
   date: 12
   tags:
   - monthly
+  - cancelled
   source: ''
 - name: Canva
   amount: 13
   date: 7
   tags:
   - monthly
+  - cancelled
   source: ''
 - name: PFFCU personal loan
   amount: 221
@@ -62,6 +64,7 @@ bills:
   date: 30
   tags:
   - non-essential
+  - cancelled
   source: ''
 - name: Squarespace
   amount: 36
@@ -93,6 +96,7 @@ bills:
   tags:
   - credit card
   - every check
+  - cancelled
   source: ''
 - name: PFFCU
   amount: 50
@@ -115,28 +119,36 @@ bills:
   - cancelled
   source: ''
 - name: Food budget
-  amount: 500
+  amount: 400
   date: '0'
   tags:
   - every check
+  source: ''
+- name: USAA
+  amount: 230
+  date: '20'
+  tags: []
   source: ''
 - name: car insurance holding
   amount: 115
   date: '0'
   tags:
   - every check
+  - cancelled
   source: ''
 - name: Car Maintenance
   amount: 85
   date: '0'
   tags:
   - every check
+  - cancelled
   source: ''
 - name: Dog Fund
   amount: 75
   date: '0'
   tags:
   - every check
+  - cancelled
   source: ''
 - name: Keeps Holding
   amount: 20
@@ -144,6 +156,8 @@ bills:
   tags:
   - every check
   - every check
+  - cancelled
+  - '["every check", "every check", "cancelled"]'
   source: ''
 - name: PFFCU personal loan
   amount: 221
@@ -164,6 +178,7 @@ bills:
   date: 0
   tags:
   - every check
+  - cancelled
   source: ''
 - name: Newegg card
   amount: 100
@@ -203,4 +218,5 @@ bills:
   date: 26
   tags:
   - non-essential
+  - cancelled
   source: ''

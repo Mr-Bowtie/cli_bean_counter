@@ -61,7 +61,7 @@ class BeanCounter
 
 
     paycheck_bills = bills.values.flatten.select do |bill|
-      bill['date'].to_i.zero? || bill['tags'].include?('every check')
+    (bill['date'].to_i.zero? || bill['tags'].include?('every check')) && !bill['tags'].include?('cancelled')
     end
 
     # create an array of all the bills with due dates in the date range that have not been cancelled

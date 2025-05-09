@@ -78,8 +78,10 @@ class BeanCounterCli < Thor
   
   # TODO: refactor this to use an end date
   def list_bills_in_period(date)
-    app = BeanCounter.new(date)
+    app = BeanCounter.new(date: date)
+    app.calculate_bill_total
     app.display_bills_in_period
+    app.display_income_calcs
   end
 
   desc 'pay_period_breakdown START_DATE',
